@@ -7,4 +7,6 @@ public class Card
     public SuitType SuitType { get; set; }
 
     public CardValueType CardValue { get; set; }
+
+    public List<Deck> CardDecks { get; set; }
 }
