@@ -24,6 +24,13 @@ public class DeckRepository : IDeckRepository
             .ToListAsync(cts);
     }
 
+    public async Task<List<string>> GetNamesOfDecks(CancellationToken cts)
+    {
+        return await _context.Decks
+            .Select(x => x.DeckName)
+            .ToListAsync(cts);
+    }
+
     public async Task<Deck> GetDeck(int decId, CancellationToken cts)
     {
         return await _context.Decks

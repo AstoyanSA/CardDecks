@@ -1,6 +1,4 @@
-﻿using CardDecks.API.Services.CardService;
-
-namespace CardDecks.API.Extensions;
+﻿namespace CardDecks.API.Extensions;
 
 public static class ServiceCollectionExtensions
 {

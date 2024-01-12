@@ -1,4 +1,4 @@
-﻿namespace CardDecks.API.Services.CardService;
+﻿namespace CardDecks.API.Services.DeckService;
 
 public class DeckFacade
 {
@@ -16,12 +16,21 @@ public class DeckFacade
         deck.DeckCards = await _cardFacade.GetCards(deck.IsDeck36, cts);
         int response = await _deckRepository.AddDeck(deck, cts);
 
-        return new CreatedAtActionResult(nameof(GetDeckbyId), nameof(Deck), new { deckId =  response}, deck);
+        return new CreatedAtActionResult(nameof(GetDeckbyId), nameof(Deck), new { deckId = response }, deck);
     }
 
     public async Task<ActionResult<Deck>> GetDecks(int deckId, CancellationToken cts)
     {
         List<Deck> deck = await _deckRepository.GetDecks(cts);
+
+        return deck == null ?
+            new NotFoundResult() :
+            new OkObjectResult(deck);
+    }
+
+    public async Task<ActionResult<List<string>>> GetNamesOfDecks(CancellationToken cts)
+    {
+        List<string> deck = await _deckRepository.GetNamesOfDecks(cts);
 
         return deck == null ?
             new NotFoundResult() :

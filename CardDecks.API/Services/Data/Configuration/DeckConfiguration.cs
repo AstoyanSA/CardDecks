@@ -10,6 +10,9 @@ public class DeckConfiguration : IEntityTypeConfiguration<Deck>
             .IsRequired()
             .HasMaxLength(256);
 
+        builder.Property(x => x.IsDeck36)
+            .IsRequired();
+
         builder
             .HasMany(x => x.DeckCards)
             .WithMany(x => x.CardDecks)
