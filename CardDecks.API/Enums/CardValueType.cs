@@ -2,8 +2,7 @@
 
 public enum CardValueType
 {
-    Ace = 1,    //туз
-    Two,
+    Two = 2,
     Three,
     Four,
     Five,
@@ -14,5 +13,6 @@ public enum CardValueType
     Ten,
     Jack,       //валет
     Queen,      //королева
-    King        //король
+    King,       //король
+    Ace         //туз
 }

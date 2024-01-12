@@ -15,5 +15,8 @@ public class CardConfiguration : IEntityTypeConfiguration<Card>
             .IsRequired()
             .HasMaxLength(20)
             .HasConversion<string>();
+
+        builder.Property(x => x.IsForDeck36)
+            .IsRequired();
     }
 }

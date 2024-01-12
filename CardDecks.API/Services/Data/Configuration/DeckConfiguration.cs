@@ -1,5 +1,4 @@
-﻿
-namespace CardDecks.API.Services.Data.Configuration;
+﻿namespace CardDecks.API.Services.Data.Configuration;
 
 public class DeckConfiguration : IEntityTypeConfiguration<Deck>
 {

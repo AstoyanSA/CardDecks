@@ -2,8 +2,8 @@
 
 public enum SuitType
 {
-    Clubs,      //трефы
-    Diamonds,   //бубны
+    Spades,     //пики
     Hearts,     //червы
-    Spades      //пики
+    Clubs,      //трефы
+    Diamonds    //бубны
 }

@@ -8,5 +8,7 @@ public class Card
 
     public CardValueType CardValue { get; set; }
 
+    public bool IsForDeck36 { get; set; }
+
     public List<Deck> CardDecks { get; set; }
 }
