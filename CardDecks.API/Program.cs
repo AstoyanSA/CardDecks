@@ -1,10 +1,15 @@
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContextPool<CardDecksDbContext>(options =>
     options.UseInMemoryDatabase("DeckStorage"));
 builder.Services.AddRepositories();
 builder.Services.AddFacades();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
