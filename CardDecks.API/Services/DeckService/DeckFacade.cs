@@ -16,10 +16,10 @@ public class DeckFacade
         deck.DeckCards = await _cardFacade.GetCards(deck.IsDeck36, cts);
         int response = await _deckRepository.AddDeck(deck, cts);
 
-        return new CreatedAtActionResult(nameof(GetDeckbyId), nameof(Deck), new { deckId = response }, deck);
+        return new CreatedAtActionResult(nameof(GetDeckById), nameof(Deck), new { deckId = response }, deck);
     }
 
-    public async Task<ActionResult<Deck>> GetDecks(int deckId, CancellationToken cts)
+    public async Task<ActionResult<List<Deck>>> GetDecks(CancellationToken cts)
     {
         List<Deck> deck = await _deckRepository.GetDecks(cts);
 
@@ -37,7 +37,7 @@ public class DeckFacade
             new OkObjectResult(deck);
     }
 
-    public async Task<ActionResult<Deck>> GetDeckbyId(int deckId, CancellationToken cts)
+    public async Task<ActionResult<Deck>> GetDeckById(int deckId, CancellationToken cts)
     {
         Deck deck = await _deckRepository.GetDeck(deckId, cts);
 
