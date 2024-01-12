@@ -2,7 +2,8 @@
 
 public class CardDecksDbContext : DbContext
 {
-    public CardDecksDbContext(DbContextOptions<CardDecksDbContext> options) : base(options)
+    public CardDecksDbContext(DbContextOptions<CardDecksDbContext> options)
+        : base(options)
     {
         Cards.AddRange(SeedData.Cards);
     }
