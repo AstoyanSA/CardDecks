@@ -1,4 +1,6 @@
-﻿namespace CardDecks.API.Extensions;
+﻿using CardDecks.API.Services.CardService;
+
+namespace CardDecks.API.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -6,6 +8,13 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<ICardRepository, CardRepository>();
         services.AddScoped<IDeckRepository, DeckRepository>();
+
+        return services;
+    }
+    public static IServiceCollection AddFacades(this IServiceCollection services)
+    {
+        services.AddScoped<CardFacade>();
+        services.AddScoped<DeckFacade>();
 
         return services;
     }

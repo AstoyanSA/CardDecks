@@ -9,24 +9,12 @@ public class DeckRepository : IDeckRepository
         _context = context;
     }
 
-    public async Task<int> CreateDeck(Deck deck, CancellationToken cts)
+    public async Task<int> AddDeck(Deck deck, CancellationToken cts)
     {
         await _context.Decks.AddAsync(deck, cts);
         await _context.SaveChangesAsync(cts);
 
         return deck.DeckId;
-    }
-
-    public async Task DelecteDeck(Deck deck, CancellationToken cts)
-    {
-        _context.Decks.Remove(deck);
-        await _context.SaveChangesAsync(cts);
-    }
-
-    public async Task UpdateDeck(Deck deck, CancellationToken cts)
-    {
-        _context.Decks.Update(deck);
-        await _context.SaveChangesAsync(cts);
     }
 
     public async Task<List<Deck>> GetDecks(CancellationToken cts)
@@ -41,5 +29,17 @@ public class DeckRepository : IDeckRepository
         return await _context.Decks
             .Include(x => x.DeckCards)
             .FirstOrDefaultAsync(x => x.DeckId == decId);
+    }
+
+    public async Task UpdateDeck(Deck deck, CancellationToken cts)
+    {
+        _context.Decks.Update(deck);
+        await _context.SaveChangesAsync(cts);
+    }
+
+    public async Task DelecteDeck(Deck deck, CancellationToken cts)
+    {
+        _context.Decks.Remove(deck);
+        await _context.SaveChangesAsync(cts);
     }
 }
