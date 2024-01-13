@@ -35,7 +35,7 @@ public class DeckRepository : IDeckRepository
     {
         return await _context.Decks
             .Include(x => x.DeckCards)
-            .FirstOrDefaultAsync(x => x.DeckId == decId);
+            .FirstOrDefaultAsync(x => x.DeckId == decId, cts);
     }
 
     public async Task UpdateDeck(Deck deck, CancellationToken cts)

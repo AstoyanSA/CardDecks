@@ -3,9 +3,10 @@
 public class DeckFacade
 {
     private readonly IDeckRepository _deckRepository;
-    private CardFacade _cardFacade;
+    private readonly CardFacade _cardFacade;
 
-    public DeckFacade(IDeckRepository deckRepository, CardFacade cardFacade)
+    public DeckFacade(IDeckRepository deckRepository,
+        CardFacade cardFacade)
     {
         _deckRepository = deckRepository;
         _cardFacade = cardFacade;
@@ -13,19 +14,20 @@ public class DeckFacade
 
     public async Task<ActionResult<Deck>> AddDeck(Deck deck, CancellationToken cts)
     {
-        deck.DeckCards = await _cardFacade.GetCards(deck.IsDeck36, cts);
         int response = await _deckRepository.AddDeck(deck, cts);
+        deck.DeckCards = await _cardFacade.GetCards(deck.IsDeck36, cts);
+        await _deckRepository.UpdateDeck(deck, cts);
 
         return new CreatedAtActionResult(nameof(GetDeckById), nameof(Deck), new { id = response }, deck);
     }
 
     public async Task<ActionResult<List<Deck>>> GetDecks(CancellationToken cts)
     {
-        List<Deck> deck = await _deckRepository.GetDecks(cts);
+        List<Deck> deckList = await _deckRepository.GetDecks(cts);
 
-        return deck == null ?
+        return deckList == null ?
             new NotFoundResult() :
-            new OkObjectResult(deck);
+            new OkObjectResult(deckList);
     }
 
     public async Task<ActionResult<List<string>>> GetNamesOfDecks(CancellationToken cts)
@@ -46,11 +48,34 @@ public class DeckFacade
             new OkObjectResult(deck);
     }
 
-    public async Task<ActionResult> UpdateDeck(Deck deck, CancellationToken cts)
+    public async Task<ActionResult<Deck>> UpdateDeck(Deck deck, CancellationToken cts)
     {
+        deck = await _deckRepository.GetDeck(deck.DeckId, cts);
+        var shuffledCards = ShuffleDeck(deck.DeckCards);
+
+        deck.DeckCards.Clear();
         await _deckRepository.UpdateDeck(deck, cts);
 
-        return new OkResult();
+        deck.DeckCards.AddRange(shuffledCards);
+        await _deckRepository.UpdateDeck(deck, cts);
+
+        return new OkObjectResult(deck);
+    }
+
+
+    private static List<Card> ShuffleDeck(List<Card> cards)
+    {
+        List<Card> newCards = new List<Card>(cards);
+        Random random = new Random();
+
+        int i = newCards.Count;
+        while (i > 0)
+        {
+            i--;
+            int j = random.Next(0, i + 1);
+            (newCards[i], newCards[j]) = (newCards[j], newCards[i]);
+        }
+        return newCards;
     }
 
     public async Task<ActionResult> DeleteDeck(int deckId, CancellationToken cts)

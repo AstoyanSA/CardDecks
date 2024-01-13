@@ -36,7 +36,7 @@ public class DeckController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult> UpdateDeck(Deck deck, CancellationToken cts)
+    public async Task<ActionResult<Deck>> UpdateDeck(Deck deck, CancellationToken cts)
     {
         return await _deckFacade.UpdateDeck(deck, cts);
     }

@@ -5,7 +5,6 @@ public class CardDecksDbContext : DbContext
     public CardDecksDbContext(DbContextOptions<CardDecksDbContext> options)
         : base(options)
     {
-        Cards.AddRange(SeedData.Cards);
     }
 
     public DbSet<Card> Cards { get; set; }

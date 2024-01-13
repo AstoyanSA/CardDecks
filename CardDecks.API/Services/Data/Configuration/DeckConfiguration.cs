@@ -21,6 +21,5 @@ public class DeckConfiguration : IEntityTypeConfiguration<Deck>
                 x.HasKey(k => new { k.CardId, k.DeckId });
                 x.HasIndex(x => x.CardId);
             });
-
     }
 }
