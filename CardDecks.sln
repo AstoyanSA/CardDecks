@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardDecks.API", "CardDecks.API\CardDecks.API.csproj", "{3FCD4B7B-BAC6-41EC-8B4D-320D3335295C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardDecks.API", "CardDecks.API\CardDecks.API.csproj", "{3FCD4B7B-BAC6-41EC-8B4D-320D3335295C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardDecks.UI", "CardDecks.UI\CardDecks.UI.csproj", "{D3B09EC9-7D15-4C34-B121-BDAB40E4E8C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3FCD4B7B-BAC6-41EC-8B4D-320D3335295C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FCD4B7B-BAC6-41EC-8B4D-320D3335295C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FCD4B7B-BAC6-41EC-8B4D-320D3335295C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B09EC9-7D15-4C34-B121-BDAB40E4E8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B09EC9-7D15-4C34-B121-BDAB40E4E8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B09EC9-7D15-4C34-B121-BDAB40E4E8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B09EC9-7D15-4C34-B121-BDAB40E4E8C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

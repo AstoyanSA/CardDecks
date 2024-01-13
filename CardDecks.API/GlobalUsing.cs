@@ -9,3 +9,4 @@ global using CardDecks.API.Services.Interfaces.Repository;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using System.Text.Json.Serialization;

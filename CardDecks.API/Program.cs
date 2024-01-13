@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContextPool<CardDecksDbContext>(options =>
@@ -16,7 +14,6 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

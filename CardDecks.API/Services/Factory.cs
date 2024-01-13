@@ -16,7 +16,8 @@ internal class Factory
                     CardId = ++i,
                     SuitType = suit,
                     CardValue = cardValue,
-                    IsForDeck36 = cardValue > CardValueType.Five
+                    IsForDeck36 = cardValue > CardValueType.Five,
+                    CardDecks = new()
                 });
             }
         }
