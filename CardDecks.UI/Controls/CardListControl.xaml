@@ -9,6 +9,11 @@
         AutoGenerateColumns="False"
         IsReadOnly="True"
         ItemsSource="{Binding SelectedDeck.DeckCards}">
+        <DataGrid.Resources>
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+        </DataGrid.Resources>
         <DataGrid.Columns>
             <DataGridTextColumn Header="Масть" Binding="{Binding SuitType}" Width="*"/>
             <DataGridTextColumn Header="Карта" Binding="{Binding CardValue}" Width="*"/>
