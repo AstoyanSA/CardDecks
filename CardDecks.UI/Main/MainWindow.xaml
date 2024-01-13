@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:controls="clr-namespace:CardDecks.UI.Controls"
         xmlns:local="clr-namespace:CardDecks.UI"
         mc:Ignorable="d"
@@ -19,11 +20,34 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <DockPanel
-        Margin="6">
-        <controls:DeckListControl
-            DockPanel.Dock="Left"/>
-        <controls:CardPanelControl
-            DockPanel.Dock="Right"/>
-    </DockPanel>
+
+    <materialDesign:DialogHost IsOpen="{Binding IsDialogOpen}">
+        <materialDesign:DialogHost.DialogContent>
+            <DockPanel
+                Width="280"
+                Margin="8 12">
+                <StackPanel DockPanel.Dock="Top">
+                    <Label FontSize="16" FontWeight="Bold">Наименование колоды:</Label>
+                    <TextBox FontSize="14" Margin="4" Text="{Binding NewDeck.DeckName}"/>
+                    <Label FontSize="16" FontWeight="Bold">Количество карт:</Label>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Content="52" Margin="4"/>
+                        <RadioButton Content="36" Margin="4" IsChecked="{Binding NewDeck.IsDeck36}"/>
+                    </StackPanel>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="4 8 4 0" Command="{Binding AddDeck}" Content="Добавить"/>
+                    <Button Grid.Column="1" Margin="4 8 4 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Content="Отмена"/>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DialogHost.DialogContent>
+        <DockPanel Margin="6">
+            <controls:DeckListControl DockPanel.Dock="Left"/>
+            <controls:CardPanelControl DockPanel.Dock="Right"/>
+        </DockPanel>
+    </materialDesign:DialogHost>
 </Window>

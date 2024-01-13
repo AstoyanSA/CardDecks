@@ -4,6 +4,8 @@ public class MainViewModel : ViewModelBase
 {
     private readonly MainFacade _mainFacade;
     private Deck _selectedDeck;
+    private Deck _newDeck;
+    private bool _isDialogOpen;
     private Visibility _cardListVisibility;
 
     private ObservableCollection<Deck> _deckList;
@@ -11,12 +13,13 @@ public class MainViewModel : ViewModelBase
     private RelayCommand _forceLoadData;
     private RelayCommand _removeDeck;
     private RelayCommand _shuffleDeck;
-    private RelayCommand _addDeckForm;
+    private RelayCommand _addDeck;
 
     public MainViewModel(MainFacade mainFacade)
     {
         _mainFacade = mainFacade;
         CardListVisibility = Visibility.Collapsed;
+        NewDeck = new Deck() { IsDeck36 = null };
     }
 
     public Deck SelectedDeck
@@ -25,7 +28,9 @@ public class MainViewModel : ViewModelBase
         set
         {
             Set(ref _selectedDeck, value);
-            CardListVisibility = value == null ? Visibility.Collapsed : Visibility.Visible;
+            CardListVisibility = value == null ?
+                Visibility.Collapsed :
+                Visibility.Visible;
         }
     }
 
@@ -35,6 +40,18 @@ public class MainViewModel : ViewModelBase
     {
         get => _deckList;
         set => Set(ref _deckList, value);
+    }
+
+    public Deck NewDeck
+    {
+        get => _newDeck;
+        set => Set(ref _newDeck, value);
+    }
+
+    public bool IsDialogOpen
+    {
+        get => _isDialogOpen;
+        set => Set(ref _isDialogOpen, value);
     }
 
     public Visibility CardListVisibility
@@ -49,16 +66,16 @@ public class MainViewModel : ViewModelBase
         CardList = await _mainFacade.GetCards(Token);
     });
 
-    public ICommand AddDeckForm => _addDeckForm ??= new RelayCommand(async _ =>
+    public ICommand AddDeck => _addDeck ??= new RelayCommand(async _ =>
     {
-        Deck newDeck = new()
-        {
-            DeckName = $"dsgsdgdsg {DateTime.Now}",
-            IsDeck36 = false
-        };
+        var newDeck = await _mainFacade.AddDeck(NewDeck, Token);
+        DeckList.Add(newDeck);
 
-        DeckList.Add(await _mainFacade.AddDeck(newDeck, Token));
-    });
+        IsDialogOpen = false;
+        NewDeck = new Deck() { IsDeck36 = null };
+    }, _ => NewDeck != null &&
+        NewDeck.IsDeck36 != null &&
+        !string.IsNullOrEmpty(NewDeck.DeckName));
 
     public ICommand RemoveDeck => _removeDeck ??= new RelayCommand(async _ =>
     {

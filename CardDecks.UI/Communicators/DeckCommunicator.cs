@@ -1,8 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
-using Microsoft.Extensions.Options;
-
-namespace CardDecks.UI.Communicators;
+﻿namespace CardDecks.UI.Communicators;
 
 public class DeckCommunicator : CommunicatorBase, IDeckCommunicator
 {

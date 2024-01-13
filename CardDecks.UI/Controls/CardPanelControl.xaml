@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:controls="clr-namespace:CardDecks.UI.Controls"
              xmlns:local="clr-namespace:CardDecks.UI.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -22,7 +21,7 @@
             <Button
                 Grid.Column="0"
                 Margin="6"
-                Command="{Binding AddDeckForm}">
+                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -109,7 +108,7 @@
             </Border.Effect>
             <Grid
                 Width="Auto">
-                <controls:CardListControl/>
+                <local:CardListControl/>
             </Grid>
         </Border>
     </DockPanel>
