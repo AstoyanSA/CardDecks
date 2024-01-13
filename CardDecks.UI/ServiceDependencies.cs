@@ -22,6 +22,8 @@ public static class ServiceDependencies
     {
         services.AddHttpClient<IDeckCommunicator, DeckCommunicator>()
             .AddPolicyHandler(RetryPolicy());
+        services.AddHttpClient<ICardCommunicator, CardCommunicator>()
+            .AddPolicyHandler(RetryPolicy());
 
         return services;
     }

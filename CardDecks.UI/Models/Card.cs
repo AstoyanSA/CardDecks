@@ -10,5 +10,5 @@ public class Card
 
     public bool IsForDeck36 { get; set; }
 
-    public List<Deck> CardDecks { get; set; }
+    public List<Deck> CardDeck { get; set; }
 }

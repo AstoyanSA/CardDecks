@@ -7,8 +7,8 @@
         xmlns:controls="clr-namespace:CardDecks.UI.Controls"
         xmlns:local="clr-namespace:CardDecks.UI"
         mc:Ignorable="d"
-        MinHeight="300"
-        MinWidth="300"
+        MinHeight="600"
+        MinWidth="800"
         WindowStartupLocation="CenterScreen"
         Title="Хранилище карточных колод"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
@@ -21,23 +21,9 @@
 
     <DockPanel
         Margin="6">
-        <controls:DeckListControl/>
-        <Border Background="White"
-            BorderBrush="Gray"
-            BorderThickness="0.3"
-            CornerRadius="8"
-            Margin="12 6 4 4"
-            Visibility="{Binding CardListVisibility}">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="5"
-                          BlurRadius="12"
-                          Opacity="0.3"/>
-            </Border.Effect>
-            <Grid
-                DockPanel.Dock="Right"
-                Width="Auto">
-                <controls:CardListControl/>
-            </Grid>
-        </Border>
+        <controls:DeckListControl
+            DockPanel.Dock="Left"/>
+        <controls:CardPanelControl
+            DockPanel.Dock="Right"/>
     </DockPanel>
 </Window>
