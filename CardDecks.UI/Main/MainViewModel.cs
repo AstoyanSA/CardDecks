@@ -19,7 +19,7 @@ public class MainViewModel : ViewModelBase
     {
         _mainFacade = mainFacade;
         CardListVisibility = Visibility.Collapsed;
-        NewDeck = new Deck() { IsDeck36 = null };
+        NewDeck = new();
     }
 
     public Deck SelectedDeck
@@ -72,9 +72,8 @@ public class MainViewModel : ViewModelBase
         DeckList.Add(newDeck);
 
         IsDialogOpen = false;
-        NewDeck = new Deck() { IsDeck36 = null };
+        NewDeck = new();
     }, _ => NewDeck != null &&
-        NewDeck.IsDeck36 != null &&
         !string.IsNullOrEmpty(NewDeck.DeckName));
 
     public ICommand RemoveDeck => _removeDeck ??= new RelayCommand(async _ =>

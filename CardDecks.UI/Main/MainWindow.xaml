@@ -28,11 +28,11 @@
                 Margin="8 12">
                 <StackPanel DockPanel.Dock="Top">
                     <Label FontSize="16" FontWeight="Bold">Наименование колоды:</Label>
-                    <TextBox FontSize="14" Margin="4" Text="{Binding NewDeck.DeckName}"/>
+                    <TextBox FontSize="14" Margin="4" Text="{Binding NewDeck.DeckName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <Label FontSize="16" FontWeight="Bold">Количество карт:</Label>
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Content="52" Margin="4"/>
-                        <RadioButton Content="36" Margin="4" IsChecked="{Binding NewDeck.IsDeck36}"/>
+                        <RadioButton Content="52" Margin="4" IsChecked="True"/>
+                        <RadioButton Content="36" Margin="4" IsChecked="{Binding NewDeck.IsDeck36, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
                 <Grid>
